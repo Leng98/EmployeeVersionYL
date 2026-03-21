@@ -2703,8 +2703,36 @@
             });
         }
         
+        let lastCheckedPhone = '';
         customerPhoneInput.addEventListener('input', (e) => {
             formatPhoneNumber(e.target);
+            
+            const cleanPhone = cleanPhoneNumber(e.target.value);
+            // ត្រួតពិនិត្យនៅពេលវាយបានយ៉ាងតិច ៩ ខ្ទង់ (លេខទូរស័ព្ទនៅកម្ពុជាមាន ៩ ទៅ ១០ ខ្ទង់)
+            if (cleanPhone.length >= 9 && cleanPhone !== lastCheckedPhone) {
+                lastCheckedPhone = cleanPhone; // ទប់ស្កាត់កុំឲ្យលោតសារដដែលៗច្រើនដង
+                
+                // រៀបចំទិន្នន័យពីថ្មីទៅចាស់ ដើម្បីយកឈ្មោះចុងក្រោយបំផុត
+                const sortedInvoices = [...historyInvoices].sort((a, b) => b.timestamp.toDate() - a.timestamp.toDate());
+                const existingCustomer = sortedInvoices.find(inv => cleanPhoneNumber(inv.customerPhone) === cleanPhone);
+                
+                if (existingCustomer) {
+                    // បំពេញទិន្នន័យដោយស្វ័យប្រវត្តិ ប្រសិនបើប្រអប់ឈ្មោះ ឬ អាសយដ្ឋាននៅទទេ
+                    if (!customerNameInput.value) customerNameInput.value = existingCustomer.customerName || '';
+                    if (!customerAddressInput.value) customerAddressInput.value = existingCustomer.customerAddress || '';
+                    
+                    // បង្ហាញ Message Box ប្រាប់បុគ្គលិក
+                    showRichMessage('រកឃើញអតិថិជនចាស់! 🎉', `
+                        <div class="text-center mt-2">
+                            <p class="text-gray-700 text-base">អតិថិជនឈ្មោះ៖ <strong class="text-indigo-600 text-lg">${existingCustomer.customerName || 'គ្មានឈ្មោះ'}</strong></p>
+                            <p class="text-gray-500 text-sm mt-3">ប្រព័ន្ធបានទាញយកទិន្នន័យចាស់មកបំពេញដោយស្វ័យប្រវត្តិ។</p>
+                        </div>
+                    `);
+                }
+            } else if (cleanPhone.length < 9) {
+                // Reset វិញនៅពេលលុបលេខទូរស័ព្ទតិចជាង ៩ ខ្ទង់
+                lastCheckedPhone = '';
+            }
         });
 
         paymentNotesInput.addEventListener('input', () => {

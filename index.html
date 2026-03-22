@@ -32,7 +32,7 @@
                 margin-right: 4mm;
                 box-sizing: border-box;
                 font-size: 14px;
-                line-height: 1.2;
+                line-height: 1.4;
             }
             /* Hide modal when printing from browser menu */
             .modal { display: none !important; }
@@ -987,7 +987,7 @@
             rowSize: 14, rowBold: false,
             totalSize: 14, totalBold: true,
             noteSize: 14, noteBold: true,
-            lineHeight: 1.2,
+            lineHeight: 1.4, // changed from 1.2 to 1.4
             marginLeft: -6,    // Default margins
             marginRight: 4
         };
@@ -1992,51 +1992,51 @@
             const s = receiptSettings;
 
             let html = `
-                <div style="width: 80mm; margin: 0 auto; padding: 5mm; box-sizing: border-box; font-family: 'Khmer OS Battambang', 'Khmer OS', sans-serif; font-size: ${s.infoSize}px; line-height: ${s.lineHeight || 1.2}; color: #000; text-align: left; background-color: #fff;">
+                <div style="width: 80mm; margin: 0 auto; padding: 5mm; box-sizing: border-box; font-family: 'Khmer OS Battambang', 'Khmer OS', sans-serif; font-size: ${s.infoSize}px; line-height: ${s.lineHeight || 1.4}; color: #000; text-align: left; background-color: #fff;">
                     <h1 style="font-size: ${s.titleSize}px; font-weight: ${s.titleBold ? 'bold' : 'normal'}; text-align: center; margin-bottom: 5px;">${storeName}</h1>
                     
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-size: ${s.dateSize}px; font-weight: ${s.dateBold ? 'bold' : 'normal'};">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: ${s.dateSize}px; font-weight: ${s.dateBold ? 'bold' : 'normal'}; border-bottom: 1px dashed #000; padding-bottom: 5px;">
                         <div style="flex: 1; text-align: left;">${formattedDate}</div>
                         <div style="flex: 1; text-align: center; white-space: nowrap;">By: ${sellerName}</div>
                         <div style="flex: 1; text-align: right;">${invoiceNumber}</div>
                     </div>
 
-                    <div style="margin-bottom: 5px; font-size: ${s.infoSize}px; font-weight: ${s.infoBold ? 'bold' : 'normal'};">
-                        <p style="margin: 0;">អតិថិជន: <strong>${customerName}</strong></p>
-                        <p style="margin: 0;">ទូរស័ព្ទ: <strong>${customerPhone}</strong></p>
-                        <p style="margin: 0;">អាសយដ្ឋាន: <strong>${customerAddress}</strong></p>
-                        <p style="margin: 0;">ដឹកតាម: <strong>${deliveryOption}</strong> | ទូទាត់: <strong>${paymentOption}</strong></p>
-                        <p style="margin: 0;">Note: ${paymentNotes}</p>
+                    <div style="margin-bottom: 8px; font-size: ${s.infoSize}px; font-weight: ${s.infoBold ? 'bold' : 'normal'};">
+                        <p style="margin: 0 0 4px 0;">អតិថិជន: <strong>${customerName}</strong></p>
+                        <p style="margin: 0 0 4px 0;">ទូរស័ព្ទ: <strong>${customerPhone}</strong></p>
+                        <p style="margin: 0 0 4px 0;">អាសយដ្ឋាន: <strong>${customerAddress}</strong></p>
+                        <p style="margin: 0 0 4px 0;">ដឹកតាម: <strong>${deliveryOption}</strong> | ទូទាត់: <strong>${paymentOption}</strong></p>
+                        <p style="margin: 0 0 4px 0;">Note: ${paymentNotes}</p>
                     </div>
                     <hr style="border-top: 1px dashed #000; margin-bottom: 5px;">
                     <table style="width: 100%; border-collapse: collapse; font-size: ${s.rowSize}px; font-weight: ${s.rowBold ? 'bold' : 'normal'};">
                         <thead>
                             <tr style="font-size: ${s.headerSize}px; font-weight: ${s.headerBold ? 'bold' : 'normal'};">
-                                <th style="text-align: left; padding-bottom: 2px;">ឈ្មោះទំនិញ</th>
-                                <th style="text-align: right; padding-bottom: 2px;">ចំនួន</th>
-                                <th style="text-align: right; padding-bottom: 2px;">សរុប</th>
+                                <th style="text-align: left; padding-bottom: 4px;">ឈ្មោះទំនិញ</th>
+                                <th style="text-align: right; padding-bottom: 4px;">ចំនួន</th>
+                                <th style="text-align: right; padding-bottom: 4px;">សរុប</th>
                             </tr>
                         </thead>
                         <tbody>
             `;
             invoiceData.items.forEach((item, index) => {
                 html += `<tr>
-                    <td style="padding: 2px 0; vertical-align: top;">
+                    <td style="padding: 4px 0; vertical-align: top;">
                         <div style="display: flex; align-items: flex-start;">
                             <span style="min-width: 20px; display: inline-block;">${index + 1}.</span>
                             <span style="flex: 1; word-break: break-word;">${item.name}</span>
                         </div>
                     </td>
-                    <td style="text-align: right; padding: 2px 0; vertical-align: top;">${item.quantity}</td>
-                    <td style="text-align: right; padding: 2px 0; vertical-align: top;">$${item.total.toFixed(2)}</td>
+                    <td style="text-align: right; padding: 4px 0; vertical-align: top;">${item.quantity}</td>
+                    <td style="text-align: right; padding: 4px 0; vertical-align: top;">$${item.total.toFixed(2)}</td>
                 </tr>`;
             });
             html += `
                         </tbody>
-                        <tfoot style="font-size: ${s.totalSize}px; font-weight: ${s.totalBold ? 'bold' : 'normal'};">
+                        <tfoot style="font-size: ${s.totalSize}px; font-weight: ${s.totalBold ? 'bold' : 'normal'}; border-top: 1px solid #ddd;">
                             <tr><td colspan="2" style="text-align: right; padding-top: 5px;">តម្លៃទំនិញសរុប:</td><td style="text-align: right; padding-top: 5px;">$${salesTotal.toFixed(2)}</td></tr>
-                            <tr><td colspan="2" style="text-align: right;">តម្លៃសេវាដឹក:</td><td style="text-align: right;">$${deliveryFee.toFixed(2)}</td></tr>
-                            <tr><td colspan="2" style="text-align: right; font-size: ${parseInt(s.totalSize) + 2}px;">តម្លៃសរុបទាំងអស់:</td><td style="text-align: right; font-size: ${parseInt(s.totalSize) + 2}px;">$${finalTotal.toFixed(2)}</td></tr>
+                            <tr><td colspan="2" style="text-align: right; padding-top: 2px;">តម្លៃសេវាដឹក:</td><td style="text-align: right; padding-top: 2px;">$${deliveryFee.toFixed(2)}</td></tr>
+                            <tr><td colspan="2" style="text-align: right; font-size: ${parseInt(s.totalSize) + 2}px; padding-top: 2px;">តម្លៃសរុបទាំងអស់:</td><td style="text-align: right; font-size: ${parseInt(s.totalSize) + 2}px; padding-top: 2px;">$${finalTotal.toFixed(2)}</td></tr>
                         </tfoot>
                     </table>
                     
@@ -2082,7 +2082,7 @@
                 rsTotalBold.checked = receiptSettings.totalBold;
                 rsNoteSize.value = receiptSettings.noteSize;
                 rsNoteBold.checked = receiptSettings.noteBold;
-                rsLineHeight.value = receiptSettings.lineHeight || 1.2;
+                rsLineHeight.value = receiptSettings.lineHeight || 1.4;
                 rsMarginLeft.value = receiptSettings.marginLeft !== undefined ? receiptSettings.marginLeft : -6;
                 rsMarginRight.value = receiptSettings.marginRight !== undefined ? receiptSettings.marginRight : 4;
                 
@@ -2109,7 +2109,7 @@
                 rowSize: parseInt(rsRowSize.value) || 14, rowBold: rsRowBold.checked,
                 totalSize: parseInt(rsTotalSize.value) || 14, totalBold: rsTotalBold.checked,
                 noteSize: parseInt(rsNoteSize.value) || 14, noteBold: rsNoteBold.checked,
-                lineHeight: parseFloat(rsLineHeight.value) || 1.2
+                lineHeight: parseFloat(rsLineHeight.value) || 1.4
             };
 
             const day = new Date().getDate();
@@ -2121,54 +2121,54 @@
                 <div style="width: 80mm; margin: 0 auto; padding: 5mm; box-sizing: border-box; font-family: 'Khmer OS Battambang', 'Khmer OS', sans-serif; font-size: ${s.infoSize}px; line-height: ${s.lineHeight}; color: #000; text-align: left; background-color: #fff;">
                     <h1 style="font-size: ${s.titleSize}px; font-weight: ${s.titleBold ? 'bold' : 'normal'}; text-align: center; margin-bottom: 5px;">ឈ្មោះហាងសាកល្បង</h1>
                     
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; font-size: ${s.dateSize}px; font-weight: ${s.dateBold ? 'bold' : 'normal'};">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: ${s.dateSize}px; font-weight: ${s.dateBold ? 'bold' : 'normal'}; border-bottom: 1px dashed #000; padding-bottom: 5px;">
                         <div style="flex: 1; text-align: left;">${formattedDate}</div>
                         <div style="flex: 1; text-align: center; white-space: nowrap;">By: អ្នកលក់</div>
                         <div style="flex: 1; text-align: right;">C0000000</div>
                     </div>
 
-                    <div style="margin-bottom: 5px; font-size: ${s.infoSize}px; font-weight: ${s.infoBold ? 'bold' : 'normal'};">
-                        <p style="margin: 0;">អតិថិជន: <strong>ឈ្មោះអតិថិជន</strong></p>
-                        <p style="margin: 0;">ទូរស័ព្ទ: <strong>012 345 678</strong></p>
-                        <p style="margin: 0;">អាសយដ្ឋាន: <strong>ភ្នំពេញ</strong></p>
-                        <p style="margin: 0;">ដឹកតាម: <strong>VET</strong> | ទូទាត់: <strong>ABA</strong></p>
-                        <p style="margin: 0;">Note: TxD 123456</p>
+                    <div style="margin-bottom: 8px; font-size: ${s.infoSize}px; font-weight: ${s.infoBold ? 'bold' : 'normal'};">
+                        <p style="margin: 0 0 4px 0;">អតិថិជន: <strong>ឈ្មោះអតិថិជន</strong></p>
+                        <p style="margin: 0 0 4px 0;">ទូរស័ព្ទ: <strong>012 345 678</strong></p>
+                        <p style="margin: 0 0 4px 0;">អាសយដ្ឋាន: <strong>ភ្នំពេញ</strong></p>
+                        <p style="margin: 0 0 4px 0;">ដឹកតាម: <strong>VET</strong> | ទូទាត់: <strong>ABA</strong></p>
+                        <p style="margin: 0 0 4px 0;">Note: TxD 123456</p>
                     </div>
                     <hr style="border-top: 1px dashed #000; margin-bottom: 5px;">
                     <table style="width: 100%; border-collapse: collapse; font-size: ${s.rowSize}px; font-weight: ${s.rowBold ? 'bold' : 'normal'};">
                         <thead>
                             <tr style="font-size: ${s.headerSize}px; font-weight: ${s.headerBold ? 'bold' : 'normal'};">
-                                <th style="text-align: left; padding-bottom: 2px;">ឈ្មោះទំនិញ</th>
-                                <th style="text-align: right; padding-bottom: 2px;">ចំនួន</th>
-                                <th style="text-align: right; padding-bottom: 2px;">សរុប</th>
+                                <th style="text-align: left; padding-bottom: 4px;">ឈ្មោះទំនិញ</th>
+                                <th style="text-align: right; padding-bottom: 4px;">ចំនួន</th>
+                                <th style="text-align: right; padding-bottom: 4px;">សរុប</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td style="padding: 2px 0; vertical-align: top;">
+                                <td style="padding: 4px 0; vertical-align: top;">
                                     <div style="display: flex; align-items: flex-start;">
                                         <span style="min-width: 20px; display: inline-block;">1.</span>
                                         <span style="flex: 1; word-break: break-word;">ឡេការពារកម្តៅថ្ងៃ (ប្រភេទលាបមុខការពារបានយូរ)</span>
                                     </div>
                                 </td>
-                                <td style="text-align: right; padding: 2px 0; vertical-align: top;">1</td>
-                                <td style="text-align: right; padding: 2px 0; vertical-align: top;">$15.00</td>
+                                <td style="text-align: right; padding: 4px 0; vertical-align: top;">1</td>
+                                <td style="text-align: right; padding: 4px 0; vertical-align: top;">$15.00</td>
                             </tr>
                             <tr>
-                                <td style="padding: 2px 0; vertical-align: top;">
+                                <td style="padding: 4px 0; vertical-align: top;">
                                     <div style="display: flex; align-items: flex-start;">
                                         <span style="min-width: 20px; display: inline-block;">2.</span>
                                         <span style="flex: 1; word-break: break-word;">សេរ៉ូមបំប៉នស្បែកមុខ</span>
                                     </div>
                                 </td>
-                                <td style="text-align: right; padding: 2px 0; vertical-align: top;">2</td>
-                                <td style="text-align: right; padding: 2px 0; vertical-align: top;">$20.00</td>
+                                <td style="text-align: right; padding: 4px 0; vertical-align: top;">2</td>
+                                <td style="text-align: right; padding: 4px 0; vertical-align: top;">$20.00</td>
                             </tr>
                         </tbody>
-                        <tfoot style="font-size: ${s.totalSize}px; font-weight: ${s.totalBold ? 'bold' : 'normal'};">
+                        <tfoot style="font-size: ${s.totalSize}px; font-weight: ${s.totalBold ? 'bold' : 'normal'}; border-top: 1px solid #ddd;">
                             <tr><td colspan="2" style="text-align: right; padding-top: 5px;">តម្លៃទំនិញសរុប:</td><td style="text-align: right; padding-top: 5px;">$35.00</td></tr>
-                            <tr><td colspan="2" style="text-align: right;">តម្លៃសេវាដឹក:</td><td style="text-align: right;">$1.50</td></tr>
-                            <tr><td colspan="2" style="text-align: right; font-size: ${parseInt(s.totalSize) + 2}px;">តម្លៃសរុបទាំងអស់:</td><td style="text-align: right; font-size: ${parseInt(s.totalSize) + 2}px;">$36.50</td></tr>
+                            <tr><td colspan="2" style="text-align: right; padding-top: 2px;">តម្លៃសេវាដឹក:</td><td style="text-align: right; padding-top: 2px;">$1.50</td></tr>
+                            <tr><td colspan="2" style="text-align: right; font-size: ${parseInt(s.totalSize) + 2}px; padding-top: 2px;">តម្លៃសរុបទាំងអស់:</td><td style="text-align: right; font-size: ${parseInt(s.totalSize) + 2}px; padding-top: 2px;">$36.50</td></tr>
                         </tfoot>
                     </table>
                     
@@ -2381,7 +2381,7 @@
                 const s = receiptSettings;
                 const ml = s.marginLeft !== undefined ? s.marginLeft : -6;
                 const mr = s.marginRight !== undefined ? s.marginRight : 4;
-                printWindow.document.write(`<html><head><title>វិក្កយបត្រ</title><style>@page { size: 80mm auto; margin: 0; } body{font-family: "Khmer OS Battambang", Arial, sans-serif; line-height: ${s.lineHeight || 1.2}; color: #000; margin: 0; padding: 0; margin-left: ${ml}mm; margin-right: ${mr}mm;} table{width: 100%; border-collapse: collapse;} th, td{padding: 2px 0; text-align: left;}</style></head><body>`);
+                printWindow.document.write(`<html><head><title>វិក្កយបត្រ</title><style>@page { size: 80mm auto; margin: 0; } body{font-family: "Khmer OS Battambang", Arial, sans-serif; line-height: ${s.lineHeight || 1.4}; color: #000; margin: 0; padding: 0; margin-left: ${ml}mm; margin-right: ${mr}mm;} table{width: 100%; border-collapse: collapse;} th, td{padding: 4px 0; text-align: left;}</style></head><body>`);
                 printWindow.document.write(invoiceHTML);
                 printWindow.document.write('</body></html>');
                 printWindow.document.close();
@@ -2543,7 +2543,7 @@
             const s = receiptSettings;
             const ml = s.marginLeft !== undefined ? s.marginLeft : -6;
             const mr = s.marginRight !== undefined ? s.marginRight : 4;
-            printWindow.document.write(`<html><head><title>វិក្កយបត្រ</title><style>@page { size: 80mm auto; margin: 0; } body{font-family: "Khmer OS Battambang", Arial, sans-serif; line-height: ${s.lineHeight || 1.2}; color: #000; margin: 0; padding: 0; margin-left: ${ml}mm; margin-right: ${mr}mm;} table{width: 100%; border-collapse: collapse;} th, td{padding: 2px 0; text-align: left;}</style></head><body>`);
+            printWindow.document.write(`<html><head><title>វិក្កយបត្រ</title><style>@page { size: 80mm auto; margin: 0; } body{font-family: "Khmer OS Battambang", Arial, sans-serif; line-height: ${s.lineHeight || 1.4}; color: #000; margin: 0; padding: 0; margin-left: ${ml}mm; margin-right: ${mr}mm;} table{width: 100%; border-collapse: collapse;} th, td{padding: 4px 0; text-align: left;}</style></head><body>`);
             printWindow.document.write(invoiceHTML);
             printWindow.document.write('</body></html>');
             printWindow.document.close();
@@ -2717,15 +2717,27 @@
                 const existingCustomer = sortedInvoices.find(inv => cleanPhoneNumber(inv.customerPhone) === cleanPhone);
                 
                 if (existingCustomer) {
-                    // បំពេញទិន្នន័យដោយស្វ័យប្រវត្តិ ប្រសិនបើប្រអប់ឈ្មោះ ឬ អាសយដ្ឋាននៅទទេ
+                    // បំពេញទិន្នន័យដោយស្វ័យប្រវត្តិ ឈ្មោះ និងអាសយដ្ឋាន
                     if (!customerNameInput.value) customerNameInput.value = existingCustomer.customerName || '';
                     if (!customerAddressInput.value) customerAddressInput.value = existingCustomer.customerAddress || '';
+                    
+                    // បំពេញ ជម្រើសហាង (Store) ដោយស្វ័យប្រវត្តិ
+                    if (existingCustomer.storeName) {
+                        setStoreSelection(existingCustomer.storeName);
+                    }
+
+                    // បំពេញ ជម្រើសដឹកជញ្ជូន (Delivery Option) ដោយស្វ័យប្រវត្តិ
+                    if (existingCustomer.deliveryOption) {
+                        vetRadio.checked = (existingCustomer.deliveryOption === 'VET');
+                        jtRadio.checked = (existingCustomer.deliveryOption === 'J&T');
+                        phnompenhRadio.checked = (existingCustomer.deliveryOption === 'ភ្នំពេញ');
+                    }
                     
                     // បង្ហាញ Message Box ប្រាប់បុគ្គលិក
                     showRichMessage('រកឃើញអតិថិជនចាស់! 🎉', `
                         <div class="text-center mt-2">
                             <p class="text-gray-700 text-base">អតិថិជនឈ្មោះ៖ <strong class="text-indigo-600 text-lg">${existingCustomer.customerName || 'គ្មានឈ្មោះ'}</strong></p>
-                            <p class="text-gray-500 text-sm mt-3">ប្រព័ន្ធបានទាញយកទិន្នន័យចាស់មកបំពេញដោយស្វ័យប្រវត្តិ។</p>
+                            <p class="text-gray-500 text-sm mt-3">ប្រព័ន្ធបានទាញយកទិន្នន័យចាស់មកបំពេញដោយស្វ័យប្រវត្តិ (ឈ្មោះ, អាសយដ្ឋាន, ហាង, ដឹកជញ្ជូន)។</p>
                         </div>
                     `);
                 }
@@ -2775,7 +2787,7 @@
         if (printBtn) printBtn.addEventListener('click', () => handleSaveAction(true));
         if (saveOnlyBtn) saveOnlyBtn.addEventListener('click', () => handleSaveAction(false));
         if (saveAndPreviewBtn) saveAndPreviewBtn.addEventListener('click', handleSaveAndPreview); 
-        if (clearCurrentListBtn) clearCurrentListBtn.addEventListener('click', () => currentInvoiceItems = [] || renderSalesList());
+        if (clearCurrentListBtn) clearCurrentListBtn.addEventListener('click', () => { currentInvoiceItems = []; renderSalesList(); });
         
         if (addNewProductBtn) addNewProductBtn.addEventListener('click', addNewProduct);
         if (addNewStoreBtn) addNewStoreBtn.addEventListener('click', addNewStore);
@@ -2801,7 +2813,7 @@
                     rowSize: parseInt(rsRowSize.value), rowBold: rsRowBold.checked,
                     totalSize: parseInt(rsTotalSize.value), totalBold: rsTotalBold.checked,
                     noteSize: parseInt(rsNoteSize.value), noteBold: rsNoteBold.checked,
-                    lineHeight: parseFloat(rsLineHeight.value) || 1.2,
+                    lineHeight: parseFloat(rsLineHeight.value) || 1.4,
                     marginLeft: parseFloat(rsMarginLeft.value) || 0,
                     marginRight: parseFloat(rsMarginRight.value) || 0
                 };

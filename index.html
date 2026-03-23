@@ -6,6 +6,10 @@
     <title>កម្មវិធីគ្រប់គ្រងការលក់_YL_v11</title>
     <!-- Load Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Add Google Fonts: Noto Sans Khmer -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;700&display=swap" rel="stylesheet">
     <!-- Add html2canvas for image generation -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
@@ -1992,7 +1996,7 @@
             const s = receiptSettings;
 
             let html = `
-                <div style="width: 80mm; margin: 0 auto; padding: 5mm; box-sizing: border-box; font-family: 'Khmer OS Battambang', 'Khmer OS', sans-serif; font-size: ${s.infoSize}px; line-height: ${s.lineHeight || 1.4}; color: #000; text-align: left; background-color: #fff;">
+                <div style="width: 80mm; margin: 0 auto; padding: 5mm; box-sizing: border-box; font-family: 'Noto Sans Khmer', sans-serif; font-size: ${s.infoSize}px; line-height: ${s.lineHeight || 1.4}; color: #000; text-align: left; background-color: #fff;">
                     <h1 style="font-size: ${s.titleSize}px; font-weight: ${s.titleBold ? 'bold' : 'normal'}; text-align: center; margin-bottom: 5px;">${storeName}</h1>
                     
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: ${s.dateSize}px; font-weight: ${s.dateBold ? 'bold' : 'normal'}; border-bottom: 1px dashed #000; padding-bottom: 5px;">
@@ -2118,7 +2122,7 @@
             const formattedDate = `${day}/${month}/${year}`;
 
             let html = `
-                <div style="width: 80mm; margin: 0 auto; padding: 5mm; box-sizing: border-box; font-family: 'Khmer OS Battambang', 'Khmer OS', sans-serif; font-size: ${s.infoSize}px; line-height: ${s.lineHeight}; color: #000; text-align: left; background-color: #fff;">
+                <div style="width: 80mm; margin: 0 auto; padding: 5mm; box-sizing: border-box; font-family: 'Noto Sans Khmer', sans-serif; font-size: ${s.infoSize}px; line-height: ${s.lineHeight}; color: #000; text-align: left; background-color: #fff;">
                     <h1 style="font-size: ${s.titleSize}px; font-weight: ${s.titleBold ? 'bold' : 'normal'}; text-align: center; margin-bottom: 5px;">ឈ្មោះហាងសាកល្បង</h1>
                     
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: ${s.dateSize}px; font-weight: ${s.dateBold ? 'bold' : 'normal'}; border-bottom: 1px dashed #000; padding-bottom: 5px;">
@@ -2381,7 +2385,7 @@
                 const s = receiptSettings;
                 const ml = s.marginLeft !== undefined ? s.marginLeft : -6;
                 const mr = s.marginRight !== undefined ? s.marginRight : 4;
-                printWindow.document.write(`<html><head><title>វិក្កយបត្រ</title><style>@page { size: 80mm auto; margin: 0; } body{font-family: "Khmer OS Battambang", Arial, sans-serif; line-height: ${s.lineHeight || 1.4}; color: #000; margin: 0; padding: 0; margin-left: ${ml}mm; margin-right: ${mr}mm;} table{width: 100%; border-collapse: collapse;} th, td{padding: 4px 0; text-align: left;}</style></head><body>`);
+                printWindow.document.write(`<html><head><title>វិក្កយបត្រ</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;700&display=swap" rel="stylesheet"><style>@page { size: 80mm auto; margin: 0; } body{font-family: "Noto Sans Khmer", sans-serif; line-height: ${s.lineHeight || 1.4}; color: #000; margin: 0; padding: 0; margin-left: ${ml}mm; margin-right: ${mr}mm;} table{width: 100%; border-collapse: collapse;} th, td{padding: 4px 0; text-align: left;}</style></head><body>`);
                 printWindow.document.write(invoiceHTML);
                 printWindow.document.write('</body></html>');
                 printWindow.document.close();
@@ -2543,7 +2547,7 @@
             const s = receiptSettings;
             const ml = s.marginLeft !== undefined ? s.marginLeft : -6;
             const mr = s.marginRight !== undefined ? s.marginRight : 4;
-            printWindow.document.write(`<html><head><title>វិក្កយបត្រ</title><style>@page { size: 80mm auto; margin: 0; } body{font-family: "Khmer OS Battambang", Arial, sans-serif; line-height: ${s.lineHeight || 1.4}; color: #000; margin: 0; padding: 0; margin-left: ${ml}mm; margin-right: ${mr}mm;} table{width: 100%; border-collapse: collapse;} th, td{padding: 4px 0; text-align: left;}</style></head><body>`);
+            printWindow.document.write(`<html><head><title>វិក្កយបត្រ</title><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Khmer:wght@400;700&display=swap" rel="stylesheet"><style>@page { size: 80mm auto; margin: 0; } body{font-family: "Noto Sans Khmer", sans-serif; line-height: ${s.lineHeight || 1.4}; color: #000; margin: 0; padding: 0; margin-left: ${ml}mm; margin-right: ${mr}mm;} table{width: 100%; border-collapse: collapse;} th, td{padding: 4px 0; text-align: left;}</style></head><body>`);
             printWindow.document.write(invoiceHTML);
             printWindow.document.write('</body></html>');
             printWindow.document.close();
